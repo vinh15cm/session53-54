@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        Async-await : sinh ra ở phiên bản ES7
+        sinh ra giải quyết vấn đè bất đồng bộ
+        giúp cho việc viết code bằng promise trở nên gọn gàng hơn
+        async được đặt trước 1 hàm sẽ biến function thành 1 promise
+        trong promise mà muốn bắt bug thì dùng catch-reject()
+        trang async await làm sao để bắt lỗi đc
+        try-catch
+     -->
+    <script>
+        async function asyncAwait(params) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log("11111");
+                    resolve()
+                }, 2000)
+            })
+            console.log("33333")
+        }
+        console.log(asyncAwait())
+        // function lấy dữ liệu 
+        function getData() {
+            fetch('https://jsonplaceholder.typicode.com/posts/1')
+                .then(user => user.json())
+                .then(data => console.log("dữ liệu khi lấy về"), data);
+        }
+        getData()
+        try {
+            // viết logic thực thi
+            await fetch('https://jsonplaceholder.typicode.com/posts/1')
+        } catch (error) {
+
+        }
+    </script>
+</body>
+
+</html>
