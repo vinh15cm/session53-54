@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- đồng bộ và bất đồng bộ
+    1 , đồng bộ : sychronous 
+    ngôn ngữ js là 1 ngôn ngữ đơn nguồn (single-thread : chỉ 1 luồng duy nhất
+    luồng code chạy từ trái qua phải , từ trên xuống dưới)
+    2, bất đồng bộ: asynchronous
+    - những việc cần thời gian xử lí như cái hàm setTime out , setInterval , readFile
+    writeFile , gửi request lên sever , tương tác các database
+    trong js sinh ra các cách để xử lí tác vụ bất đồng bộ 
+    1, dùng call back
+    callback là 1 hàm được truyền vào làm đối số của hàm khác
+    2,promise
+    3,async-await
+    
+-->
+    <script>
+        // console.log(" công việc 1");
+        // settimeout(() => {
+        //     console.log("công việc 2")
+        // }, 5000)
+        // console.log("công việc 3")
+        function task1(a) {
+            // cần thời gian xử lí công viẹc 1
+            // ví dụ cần 2 giây để xử lí công việc 1
+            setTimeout(() => {
+                console.log("công việc 1 được thực hiện")
+                a();
+            }, 2000);
+        }
+        function task2() {
+            console.log("được thực thi sau khi task1 hoàn thành");
+        }
+        // task1(task2);
+        setTimeout(() => {
+            console.log("công việc 1 được thực hiện");
+            setTimeout(() => {
+                console.log("công việc 2 được thực thi sau khi công việc 1 hoàn thành");
+                setTimeout(() => {
+                    console.log("công việc 3 thực thi sau khi công việc 2 hoàn thành");
+                }, 7000);
+            }, 3000);
+        }, 1000);
+        // khi viết nhiều hàm được xử lí lồng nhau thì sex rơi vào tình trang
+        // callback hell (phim con hell)
+        let result = [1, 2, 3, 4]
+        function myFilter() {
+            let array = [];
+            for (const value of array) {
+                if (callback(value)) {
+                    result.push(value)
+                }
+            }
+            console.log("", result)
+            return result
+        }
+        myFilter(result, (item) => item > 3)
+
+        // dùng callback custom lại hàm filter-lọc
+
+    </script>
+</body>
+
+</html>
